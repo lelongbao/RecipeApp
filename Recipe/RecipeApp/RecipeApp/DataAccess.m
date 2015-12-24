@@ -30,10 +30,20 @@
         return;
     } else {
         
+        for (int i = 0; i< kListRecipeTypeDefault.count; i++) {
+            RecipeType *recipeType = [RecipeType new];
+            recipeType.recipeType = kListRecipeTypeDefault[i];
+            [recipeType commit];
+        }
+        
+        NSArray *arrayRecipeType = [[RecipeType query] fetch];
+        
+        
         for (int i = 0; i< kListRecipeDefault.count; i++) {
             Recipe *recipe = [Recipe new];
             recipe.recipeName = kListRecipeDefault[i];
             recipe.recipeDecription = kListRecipeDecriptionDefault[i];
+            recipe.type = arrayRecipeType[i];
             [recipe commit];
         }
     }
@@ -53,10 +63,12 @@
  * Insert Recipe
  */
 - (BOOL) insertRecipe:(NSString *)nameRecipe
-    descriptionRecipe:(NSString *)descriptionRecipe {
+    descriptionRecipe:(NSString *)descriptionRecipe
+             withType:(RecipeType *)recipeType {
     Recipe *recipeNew = [Recipe new];
     recipeNew.recipeName = nameRecipe;
     recipeNew.recipeDecription = descriptionRecipe;
+    recipeNew.type = recipeType;
     return [recipeNew commit];
 }
 
@@ -65,9 +77,11 @@
  */
 - (BOOL) updateRecipe:(Recipe *)recipe
              withName:(NSString *)nameRecipe
-    descriptionRecipe:(NSString *)descriptionRecipe {
+    descriptionRecipe:(NSString *)descriptionRecipe
+             withType:(RecipeType *)recipeType {
     recipe.recipeName = nameRecipe;
     recipe.recipeDecription = descriptionRecipe;
+    recipe.type = recipeType;
     return [recipe commit];
 }
 
@@ -76,6 +90,16 @@
  */
 - (BOOL) deleteRecipe:(Recipe *)recipe {
     return [recipe remove];
+}
+
+//*****************************************************************************
+#pragma mark -
+#pragma mark - ** Get list recipe **
+/*
+ * Get list recipe
+ */
+- (NSArray *)listRecipeByType:(RecipeType *)recipeType {
+   return [[[Recipe query] whereWithFormat:@"(type == %@ )",recipeType] fetch];
 }
 
 @end

@@ -10,10 +10,13 @@
 #define CommonString_h
 
 #define kIdentifierCellTableView @"identifierCellRecipe"
+#define kRecipeDetailController @"RecipeDetailController"
+#define kEmptyString @""
 #define kNameDatabase @"RecipeDB"
 #define kFieldRecipeName @"recipeName"
 #define kListRecipeDefault @[@"Recipe 1", @"Recipe 2", @"Recipe 3", @"Recipe 4", @"Recipe 5"]
 #define kListRecipeDecriptionDefault @[@"This is a sample for recipe 1", @"This is a sample for recipe 2", @"This is a sample for recipe 3", @"This is a sample for recipe 4", @"This is a sample for recipe 5"]
+#define kListRecipeTypeDefault @[@" Recipe A", @" Recipe B", @" Recipe C", @" Recipe D", @" Recipe E"]
 #define InitStoryBoardWithIdentifier(identifier) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:identifier]
 
 #endif /* CommonString_h */

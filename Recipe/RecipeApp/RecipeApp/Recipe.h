@@ -7,10 +7,12 @@
 //
 
 #import <DBAccess/DBAccess.h>
+@class RecipeType;
 
 @interface Recipe : DBObject
 
 @property (strong, nonatomic) NSString *recipeName;
 @property (strong, nonatomic) NSString *recipeDecription;
+@property (strong, nonatomic) RecipeType *type;
 
 @end

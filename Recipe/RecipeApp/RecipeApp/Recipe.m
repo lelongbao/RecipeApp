@@ -9,7 +9,7 @@
 #import "Recipe.h"
 
 @implementation Recipe
-@dynamic recipeName, recipeDecription;
+@dynamic recipeName, recipeDecription, type;
 
 + (DBIndexDefinition *)indexDefinitionForEntity {
     

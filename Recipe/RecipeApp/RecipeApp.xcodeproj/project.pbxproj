@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D31614F31C2BAC7500CE1317 /* RecipeType.m in Sources */ = {isa = PBXBuildFile; fileRef = D31614F21C2BAC7500CE1317 /* RecipeType.m */; };
+		D31614F71C2BEB2800CE1317 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D31614F61C2BEB2800CE1317 /* Utilities.m */; };
 		D3D5F1081C2A5CDB00B8CBA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5F1071C2A5CDB00B8CBA4 /* main.m */; };
 		D3D5F10B1C2A5CDB00B8CBA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5F10A1C2A5CDB00B8CBA4 /* AppDelegate.m */; };
 		D3D5F1111C2A5CDB00B8CBA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3D5F10F1C2A5CDB00B8CBA4 /* Main.storyboard */; };
@@ -40,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D31614F11C2BAC7500CE1317 /* RecipeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeType.h; sourceTree = "<group>"; };
+		D31614F21C2BAC7500CE1317 /* RecipeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeType.m; sourceTree = "<group>"; };
+		D31614F51C2BEB2800CE1317 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		D31614F61C2BEB2800CE1317 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		D3D5F1031C2A5CDB00B8CBA4 /* RecipeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D5F1071C2A5CDB00B8CBA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D3D5F1091C2A5CDB00B8CBA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -94,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D31614F41C2BEB1000CE1317 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D31614F51C2BEB2800CE1317 /* Utilities.h */,
+				D31614F61C2BEB2800CE1317 /* Utilities.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		D3D5F0FA1C2A5CDA00B8CBA4 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +132,7 @@
 		D3D5F1051C2A5CDB00B8CBA4 /* RecipeApp */ = {
 			isa = PBXGroup;
 			children = (
+				D31614F41C2BEB1000CE1317 /* Utilities */,
 				D3D5F1531C2A7F4200B8CBA4 /* Dependencies */,
 				D3D5F13C1C2A74C300B8CBA4 /* AppDelegate */,
 				D3D5F1441C2A756E00B8CBA4 /* Core */,
@@ -197,6 +213,8 @@
 			children = (
 				D3D5F1571C2A85A000B8CBA4 /* Recipe.h */,
 				D3D5F1581C2A85A100B8CBA4 /* Recipe.m */,
+				D31614F11C2BAC7500CE1317 /* RecipeType.h */,
+				D31614F21C2BAC7500CE1317 /* RecipeType.m */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -385,7 +403,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3D5F10B1C2A5CDB00B8CBA4 /* AppDelegate.m in Sources */,
+				D31614F31C2BAC7500CE1317 /* RecipeType.m in Sources */,
 				D3D5F1591C2A85A100B8CBA4 /* Recipe.m in Sources */,
+				D31614F71C2BEB2800CE1317 /* Utilities.m in Sources */,
 				D3D5F1471C2A759200B8CBA4 /* DataAccess.m in Sources */,
 				D3D5F14E1C2A76E700B8CBA4 /* RecipeController.m in Sources */,
 				D3D5F1081C2A5CDB00B8CBA4 /* main.m in Sources */,
@@ -632,6 +652,7 @@
 				D3D5F1351C2A5CDB00B8CBA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3D5F1361C2A5CDB00B8CBA4 /* Build configuration list for PBXNativeTarget "RecipeAppTests" */ = {
 			isa = XCConfigurationList;
@@ -640,6 +661,7 @@
 				D3D5F1381C2A5CDB00B8CBA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3D5F1391C2A5CDB00B8CBA4 /* Build configuration list for PBXNativeTarget "RecipeAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -648,6 +670,7 @@
 				D3D5F13B1C2A5CDB00B8CBA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

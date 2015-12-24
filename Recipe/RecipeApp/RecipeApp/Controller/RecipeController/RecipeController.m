@@ -11,9 +11,11 @@
 @interface RecipeController () <UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) DBEventHandler* recipeEventHandler;
+@property (nonatomic, strong) DataAccess *dataAccess;
 @property (strong, nonatomic) UISearchController *searchController;
 @property (nonatomic, strong) NSArray *listResult;
 @property (nonatomic, strong) NSArray *listRecipe;
+@property (nonatomic, strong) NSArray *listRecipeType;
 @property (weak, nonatomic) IBOutlet UITableView *tbvRecipe;
 
 - (IBAction)btnAdd:(id)sender;
@@ -33,6 +35,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.listRecipe = [[Recipe query] fetch];
+    self.listRecipeType = [[RecipeType query] fetch];
     [self.tbvRecipe reloadData];
 }
 
@@ -48,13 +51,9 @@
     /* get the event object for the MacModel class object */
     self.recipeEventHandler = [Recipe eventHandler];
     
-    [self.recipeEventHandler registerBlockForEvents:DBAccessEventDelete
-     |DBAccessEventInsert
-     |DBAccessEventUpdate
-                                            withBlock:^(DBEvent *event) {
-                                                
+    [self.recipeEventHandler registerBlockForEvents:DBAccessEventDelete |DBAccessEventInsert |DBAccessEventUpdate
+                                          withBlock:^(DBEvent *event) {
                                                 [self.tbvRecipe reloadData];
-                                                
                                             } onMainThread:YES];
 }
 
@@ -68,6 +67,7 @@
     
     // Init search controller
     [self initSearchController];
+    self.dataAccess = [DataAccess share];
 }
 
 /*
@@ -90,12 +90,43 @@
 #pragma mark -
 #pragma mark - ** Table view delegate **
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (![self.searchController.searchBar.text isEqualToString:kEmptyString]) {
+        
+        // Search
+        return [self.listResult count];
+    } else {
+        
+        // Recipe type
+        return [self.listRecipeType count];
+    }
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (![self.searchController.searchBar.text  isEqualToString: @""]) {
+    
+    RecipeType *typeRecipe = self.listRecipeType[section];
+    if (![self.searchController.searchBar.text  isEqualToString: kEmptyString]) {
+        
+        // Search
         return [self.listResult count];
         
     } else {
-        return [self.listRecipe count];
+        
+        // Return row of each section
+        return [self.dataAccess listRecipeByType:typeRecipe].count;
+        
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    if (![self.searchController.searchBar.text isEqualToString:kEmptyString]) {
+        Recipe *recipeObj = self.listResult[section];
+        return recipeObj.type.recipeType;
+    } else {
+        RecipeType *recipeType = self.listRecipeType[section];
+        return recipeType.recipeType;
     }
 }
 
@@ -106,11 +137,13 @@
     if(!cell) { cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kIdentifierCellTableView]; }
     
     // Config cell
-    Recipe *recipe;
-    if (![self.searchController.searchBar.text isEqualToString:@""]) {
-        recipe = [self.listResult objectAtIndex:indexPath.row];
+    Recipe *recipe = nil;
+    if (![self.searchController.searchBar.text isEqualToString:kEmptyString]) {
+        recipe = self.listResult[indexPath.row];
+        
     } else {
-        recipe = [self.listRecipe objectAtIndex:indexPath.row];
+        RecipeType *typeRecipe = self.listRecipeType[indexPath.section];
+        recipe = [self.dataAccess listRecipeByType:typeRecipe][indexPath.row];
     }
     
     cell.textLabel.text = recipe.recipeName;
@@ -128,13 +161,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-     RecipeDetailController *detailController = InitStoryBoardWithIdentifier(@"RecipeDetailController");
-    if (![self.searchController.searchBar.text isEqualToString:@""]) {
+     RecipeDetailController *detailController = InitStoryBoardWithIdentifier(kRecipeDetailController);
+    if (![self.searchController.searchBar.text isEqualToString:kEmptyString]) {
         indexPath = [self.tbvRecipe indexPathForSelectedRow];
         detailController.recipe = [self.listResult objectAtIndex:indexPath.row];
         
     } else {
-        detailController.recipe = [self.listRecipe objectAtIndex:indexPath.row];
+        RecipeType *typeRecipe = self.listRecipeType[indexPath.section];
+        detailController.recipe = [self.dataAccess listRecipeByType:typeRecipe][indexPath.row];
     }
     
     [self.navigationController pushViewController:detailController animated:YES];
@@ -143,7 +177,10 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"recipeName contains[c] %@", searchText];
-    self.listResult = [[[Recipe query] fetch] filteredArrayUsingPredicate:resultPredicate];
+    NSArray *list = [self.listRecipe filteredArrayUsingPredicate:resultPredicate];
+    for (Recipe *recipe in list) {
+        self.listResult = [self.dataAccess listRecipeByType:recipe.type];
+    }
 }
 
 - (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
@@ -167,7 +204,7 @@
 #pragma mark IBAction
 
 - (IBAction)btnAdd:(id)sender {
-    RecipeDetailController *detailController = InitStoryBoardWithIdentifier(@"RecipeDetailController");
+    RecipeDetailController *detailController = InitStoryBoardWithIdentifier(kRecipeDetailController);
     [self.navigationController pushViewController:detailController animated:YES];
 
 }

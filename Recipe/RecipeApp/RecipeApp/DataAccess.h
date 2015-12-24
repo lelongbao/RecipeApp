@@ -12,6 +12,10 @@
 
 + (DataAccess *)share;
 
+//*****************************************************************************
+#pragma mark -
+#pragma mark - ** Create - Insert - Update - Delete **
+
 /*
  * Create database sample
  */
@@ -21,18 +25,28 @@
  * Insert Recipe
  */
 - (BOOL) insertRecipe:(NSString *)nameRecipe
-   descriptionRecipe:(NSString *)descriptionRecipe;
+    descriptionRecipe:(NSString *)descriptionRecipe
+             withType:(RecipeType *)recipeType;
 
 /*
  * Update Recipe
  */
 - (BOOL) updateRecipe:(Recipe *)recipe
             withName:(NSString *)nameRecipe
-   descriptionRecipe:(NSString *)descriptionRecipe;
+   descriptionRecipe:(NSString *)descriptionRecipe
+             withType:(RecipeType *)recipeType;
 
 /*
  * Delete Recipe
  */
 - (BOOL) deleteRecipe:(Recipe *)recipe;
+
+//*****************************************************************************
+#pragma mark -
+#pragma mark - ** Get list recipe **
+/*
+ * Get list recipe
+ */
+- (NSArray *)listRecipeByType:(RecipeType *)recipeType;
 
 @end
