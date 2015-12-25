@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D30532A21C2CEC300071AC7C /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30532A11C2CEC300071AC7C /* MainController.m */; };
 		D31614F31C2BAC7500CE1317 /* RecipeType.m in Sources */ = {isa = PBXBuildFile; fileRef = D31614F21C2BAC7500CE1317 /* RecipeType.m */; };
 		D31614F71C2BEB2800CE1317 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D31614F61C2BEB2800CE1317 /* Utilities.m */; };
 		D3D5F1081C2A5CDB00B8CBA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5F1071C2A5CDB00B8CBA4 /* main.m */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D30532A01C2CEC300071AC7C /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		D30532A11C2CEC300071AC7C /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		D31614F11C2BAC7500CE1317 /* RecipeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeType.h; sourceTree = "<group>"; };
 		D31614F21C2BAC7500CE1317 /* RecipeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeType.m; sourceTree = "<group>"; };
 		D31614F51C2BEB2800CE1317 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
@@ -100,6 +103,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D305329F1C2CEC170071AC7C /* MainController */ = {
+			isa = PBXGroup;
+			children = (
+				D30532A01C2CEC300071AC7C /* MainController.h */,
+				D30532A11C2CEC300071AC7C /* MainController.m */,
+			);
+			name = MainController;
+			sourceTree = "<group>";
+		};
 		D31614F41C2BEB1000CE1317 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +206,7 @@
 		D3D5F13D1C2A74D700B8CBA4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D305329F1C2CEC170071AC7C /* MainController */,
 				D3D5F14B1C2A75FE00B8CBA4 /* RecipeController */,
 			);
 			name = Controller;
@@ -418,6 +431,7 @@
 				D3D5F14E1C2A76E700B8CBA4 /* RecipeController.m in Sources */,
 				D3D5F1081C2A5CDB00B8CBA4 /* main.m in Sources */,
 				D3D5F15C1C2AA0E600B8CBA4 /* RecipeDetailController.m in Sources */,
+				D30532A21C2CEC300071AC7C /* MainController.m in Sources */,
 				D3D5F1141C2A5CDB00B8CBA4 /* RecipeApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
