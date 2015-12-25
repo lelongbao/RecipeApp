@@ -18,5 +18,6 @@
 #import <DBAccess/DBAccess.h>
 #import "RecipeDetailController.h"
 #import "RecipeType.h"
+#import "Utilities.h"
 
 #endif /* PrefixHeader_pch */

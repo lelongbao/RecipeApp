@@ -10,4 +10,12 @@
 
 @implementation Utilities
 
++ (void)addAnimation:(UIView *)view {
+    [UIView transitionWithView:view
+                      duration:0.3
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:NULL
+                    completion:NULL];
+}
+
 @end

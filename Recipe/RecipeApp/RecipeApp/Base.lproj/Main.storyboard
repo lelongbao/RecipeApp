@@ -165,6 +165,15 @@
                                     <outlet property="delegate" destination="C7r-PM-dqX" id="3Jn-M7-Js1"/>
                                 </connections>
                             </textField>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wqc-bk-iA4">
+                                <rect key="frame" x="0.0" y="343" width="600" height="257"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="C7r-PM-dqX" id="Mur-8V-h2b"/>
+                                    <outlet property="delegate" destination="C7r-PM-dqX" id="ONK-01-wqt"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -176,8 +185,10 @@
                             <constraint firstItem="e0U-Dc-ssi" firstAttribute="top" secondItem="dB5-I7-aJh" secondAttribute="bottom" constant="14" id="BnS-ql-G5d"/>
                             <constraint firstItem="XDg-z2-iHa" firstAttribute="leading" secondItem="A6G-7B-VZ6" secondAttribute="leadingMargin" constant="8" id="DO4-UD-yfg"/>
                             <constraint firstItem="ISn-id-Iri" firstAttribute="leading" secondItem="A6G-7B-VZ6" secondAttribute="leadingMargin" constant="15" id="DVu-KH-Q27"/>
+                            <constraint firstItem="wqc-bk-iA4" firstAttribute="leading" secondItem="A6G-7B-VZ6" secondAttribute="leadingMargin" constant="-20" id="HUy-vN-rqw"/>
                             <constraint firstItem="dB5-I7-aJh" firstAttribute="top" secondItem="XDg-z2-iHa" secondAttribute="bottom" constant="14" id="MDs-VN-vnl"/>
                             <constraint firstItem="3bl-zt-Nn7" firstAttribute="leading" secondItem="T3A-zN-hS9" secondAttribute="trailing" constant="20" id="PAG-lT-nXG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wqc-bk-iA4" secondAttribute="trailing" constant="-20" id="T8I-fs-xM8"/>
                             <constraint firstItem="T3A-zN-hS9" firstAttribute="top" secondItem="917-kh-qML" secondAttribute="bottom" constant="26" id="VxC-UC-FtS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3bl-zt-Nn7" secondAttribute="trailing" constant="8" id="Yam-Go-A3M"/>
                             <constraint firstItem="3bl-zt-Nn7" firstAttribute="top" secondItem="917-kh-qML" secondAttribute="bottom" constant="18" id="ZJa-QT-tuA"/>
@@ -186,12 +197,15 @@
                             <constraint firstItem="1D4-Pn-re0" firstAttribute="top" secondItem="ISn-id-Iri" secondAttribute="bottom" constant="69" id="dGL-IA-gMt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e0U-Dc-ssi" secondAttribute="trailing" constant="8" id="fxe-7f-XRv"/>
                             <constraint firstItem="iBy-S9-6ai" firstAttribute="leading" secondItem="A6G-7B-VZ6" secondAttribute="leadingMargin" constant="8" id="iJn-xQ-f5Y"/>
+                            <constraint firstItem="1D4-Pn-re0" firstAttribute="top" secondItem="wqc-bk-iA4" secondAttribute="bottom" id="iYm-rv-23i"/>
                             <constraint firstItem="e0U-Dc-ssi" firstAttribute="leading" secondItem="iBy-S9-6ai" secondAttribute="trailing" constant="8" id="vcF-EA-aD1"/>
+                            <constraint firstItem="wqc-bk-iA4" firstAttribute="top" secondItem="e0U-Dc-ssi" secondAttribute="bottom" constant="10" id="x28-Jh-yE6"/>
                             <constraint firstItem="T3A-zN-hS9" firstAttribute="leading" secondItem="A6G-7B-VZ6" secondAttribute="leadingMargin" constant="8" id="yAj-XC-qr9"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="tbvRecipeType" destination="wqc-bk-iA4" id="Nrl-qU-pDN"/>
                         <outlet property="tvRecipeDecription" destination="dB5-I7-aJh" id="QqY-hr-QnY"/>
                         <outlet property="txtRecipeName" destination="3bl-zt-Nn7" id="4kv-tC-Nik"/>
                         <outlet property="txtRecipeType" destination="e0U-Dc-ssi" id="yFo-QI-6WH"/>

@@ -10,4 +10,6 @@
 
 @interface Utilities : NSObject
 
++ (void)addAnimation:(UIView *)view;
+
 @end

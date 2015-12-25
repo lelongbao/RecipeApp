@@ -7,7 +7,6 @@
 //
 
 #import "RecipeDetailController.h"
-#define FRAME_TABLEVIEW_IN_TEXTFIELD CGRectMake(0.0f, 0.0f, 230.0f, 216.0f)
 
 @interface RecipeDetailController () <UITextFieldDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -15,7 +14,7 @@
 @property (nonatomic, strong) DataAccess *dataAccess;
 @property (nonatomic, strong) RecipeType *recipeTypeSelected;
 @property (nonatomic, strong) NSArray *listRecipeType;
-@property (nonatomic, strong) UITableView *tbvRecipeType;
+@property (nonatomic, strong) IBOutlet UITableView *tbvRecipeType;
 @property (weak, nonatomic) IBOutlet UITextField *txtRecipeName;
 @property (weak, nonatomic) IBOutlet UITextField *txtRecipeType;
 @property (weak, nonatomic) IBOutlet UITextView *tvRecipeDecription;
@@ -83,22 +82,13 @@
  * Show table view recipy type
  */
 - (void)showListRecipeType {
-    self.tbvRecipeType = [[UITableView alloc]initWithFrame:FRAME_TABLEVIEW_IN_TEXTFIELD style:UITableViewStylePlain];
-    self.tbvRecipeType.delegate = self;
-    self.tbvRecipeType.dataSource = self;
-    self.txtRecipeType.inputView = self.tbvRecipeType;
-    self.tbvRecipeType.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.tbvRecipeType.layer.borderWidth = 1.0f;
-    
-    // Scroll table view at position
-    for (int i=0; i<self.listRecipeType.count; i++) {
-        RecipeType *recipeType = self.listRecipeType[i];
-        if ([self.recipe.type isEqual:recipeType]) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tbvRecipeType scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        }
-        
-    }
+    [Utilities addAnimation:self.tbvRecipeType];
+    self.tbvRecipeType.hidden = NO;
+}
+
+- (void)hideListRecipe {
+    [Utilities addAnimation:self.tbvRecipeType];
+    self.tbvRecipeType.hidden = YES;
 }
 
 /*
@@ -108,15 +98,26 @@
     // Create tap gesture to dismiss keyboard
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
+                                   action:@selector(dismissKeyboard:)];
     [self.view addGestureRecognizer:tap];
 }
 
 /*
  * Dismiss Keyboard
  */
--(void)dismissKeyboard {
-    [self.view endEditing:YES];
+-(void)dismissKeyboard:(UITapGestureRecognizer *)gesture {
+    
+    CGPoint touchPoint= [gesture locationInView:self.tbvRecipeType];
+    CGPoint pointView = [gesture locationInView:self.view];
+    if (CGRectContainsPoint(self.tbvRecipeType.frame, pointView)) {
+        NSIndexPath *indexPath = [self.tbvRecipeType indexPathForRowAtPoint:touchPoint];
+        if (indexPath) {
+            [self tableView:self.tbvRecipeType didSelectRowAtIndexPath:indexPath];
+        }
+    } else {
+        [self hideListRecipe];
+        [self.view endEditing:YES];
+    }
 }
 
 //*****************************************************************************
@@ -152,7 +153,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     }
-    [cell setBackgroundColor:[UIColor clearColor]];
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     RecipeType *recipeType = [self.listRecipeType objectAtIndex:indexPath.row];
     cell.textLabel.text = recipeType.recipeType;
     return cell;
@@ -166,6 +167,7 @@
     RecipeType *recipeType = [self.listRecipeType objectAtIndex:indexPath.row];
     self.txtRecipeType.text = recipeType.recipeType;
     self.recipeTypeSelected = recipeType;
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
