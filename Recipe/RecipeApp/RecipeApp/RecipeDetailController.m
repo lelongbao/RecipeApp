@@ -127,6 +127,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if ([textField isEqual:self.txtRecipeType]) {
         [self showListRecipeType];
+        [textField resignFirstResponder];
     }
 }
 
@@ -141,6 +142,26 @@
 //*****************************************************************************
 #pragma mark -
 #pragma mark - ** Table view delegate **
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    return @"List Recipe Type";
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    // Background color
+    view.tintColor = [UIColor lightGrayColor];
+    
+    // Text Color
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor blackColor]];
+}
+
 
 /*
  * TABLE VIEW STATE
@@ -167,13 +188,11 @@
     RecipeType *recipeType = [self.listRecipeType objectAtIndex:indexPath.row];
     self.txtRecipeType.text = recipeType.recipeType;
     self.recipeTypeSelected = recipeType;
+    
+    // Hide list recipe
+    [self hideListRecipe];
 
 }
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 //*****************************************************************************
 #pragma mark -
 #pragma mark - ** IBAction **
