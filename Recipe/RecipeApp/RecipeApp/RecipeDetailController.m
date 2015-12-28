@@ -134,13 +134,6 @@
 //*****************************************************************************
 #pragma mark -
 #pragma mark - ** Config screen with multiple device **
-- (void)configMultipleDevice {
-    if ([Utilities isiPad]) {
-        self.bottomTableRecipeType.constant = kConstantBottomTableRecipeType1;
-    } else {
-        
-    }
-}
 
 - (void)fixAutolayoutFor35 {}
 - (void)fixAutolayoutFor40 {}
@@ -158,17 +151,18 @@
 #pragma mark -
 #pragma mark - ** Text field delegate **
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if ([textField isEqual:self.txtRecipeType]) {
-        [textField resignFirstResponder];
         [self showListRecipeType];
+        [self.view endEditing:YES];
+        return NO;
     } else {
-        
+        return YES;
     }
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [textField resignFirstResponder];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    return [textField resignFirstResponder];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
