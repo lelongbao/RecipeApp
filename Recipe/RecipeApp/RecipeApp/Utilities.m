@@ -8,6 +8,12 @@
 
 #import "Utilities.h"
 
+#define kDeviceIsPhoneSmallerOrEqual35 (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && MAX(UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height) <= 480.0)
+#define kDeviceIsPhoneSmallerOrEqual40 (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && MAX(UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height) <= 568.0)
+#define kDeviceIsPhoneSmallerOrEqual47 (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && MAX(UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height) <= 667.0)
+#define kDeviceIsPhoneSmallerOrEqual55 (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && MAX(UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height) <= 1104.0)
+#define kDeviceIpad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
 @implementation Utilities
 
 + (void)addAnimation:(UIView *)view {
@@ -58,6 +64,50 @@
         return YES;
     } else {
         return NO;
+    }
+}
+
+/*
+ * Detect ipad
+ */
++ (BOOL) isiPad
+{
+    static BOOL isIPad = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        isIPad = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
+    });
+    return isIPad;
+}
+
+/**
+ * fix auto layout for iPhone 5/5S, iPhone 6/6S, iPhone 6/6S Plus
+ */
++ (void) fixAutolayoutWithDelegate:(nonnull id /*<UIFixAutolayoutDelegate>*/)delegate{
+    
+    static SEL s_selector = nil;
+    if (!s_selector) {
+        if (kDeviceIsPhoneSmallerOrEqual35) {
+            s_selector = NSSelectorFromString(@"fixAutolayoutFor35");
+        }
+        else if (kDeviceIsPhoneSmallerOrEqual40) {
+            s_selector = NSSelectorFromString(@"fixAutolayoutFor40");
+        }
+        else if (kDeviceIsPhoneSmallerOrEqual47) {
+            s_selector = NSSelectorFromString(@"fixAutolayoutFor47");
+        }
+        else if (kDeviceIsPhoneSmallerOrEqual55) {
+            s_selector = NSSelectorFromString(@"fixAutolayoutFor55");
+        } else if (kDeviceIpad) {
+            s_selector = NSSelectorFromString(@"fixAutolayoutForIpad");
+        }
+    }
+    
+    id<FixAutolayoutDelegate> realDelegate = delegate;
+    if ([realDelegate respondsToSelector:s_selector]) {
+        IMP imp = [delegate methodForSelector:s_selector];
+        void (*func)(id, SEL) = (void *)imp;
+        func(realDelegate, s_selector);
     }
 }
 

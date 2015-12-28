@@ -19,5 +19,6 @@
 #import "RecipeDetailController.h"
 #import "RecipeType.h"
 #import "Utilities.h"
+#import "FixAutoLayoutDelegate.h"
 
 #endif /* PrefixHeader_pch */

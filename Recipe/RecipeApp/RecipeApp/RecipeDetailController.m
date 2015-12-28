@@ -8,6 +8,9 @@
 
 #import "RecipeDetailController.h"
 
+#define kConstantBottomTableRecipeType2 (self.listRecipeType.count - 2) * 44
+#define kConstantBottomTableRecipeType1 110 + (self.listRecipeType.count + 1) * 44
+
 @interface RecipeDetailController () <UITextFieldDelegate, UITextViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) DBEventHandler* recipeEventHandler;
@@ -18,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtRecipeName;
 @property (weak, nonatomic) IBOutlet UITextField *txtRecipeType;
 @property (weak, nonatomic) IBOutlet UITextView *tvRecipeDecription;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomTableRecipeType;
 - (IBAction)btnUpdate:(id)sender;
 - (IBAction)btnDelete:(id)sender;
 
@@ -68,7 +72,14 @@
     self.recipeTypeSelected = self.recipe.type;
     self.txtRecipeType.text = self.recipe.type.recipeType;
     
+    // Config table view recipe
+    self.tbvRecipeType.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tbvRecipeType.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     [self initTapGesture];
+    
+    [Utilities fixAutolayoutWithDelegate:self];
 }
 
 /*
@@ -118,6 +129,29 @@
         [self hideListRecipe];
         [self.view endEditing:YES];
     }
+}
+
+//*****************************************************************************
+#pragma mark -
+#pragma mark - ** Config screen with multiple device **
+- (void)configMultipleDevice {
+    if ([Utilities isiPad]) {
+        self.bottomTableRecipeType.constant = kConstantBottomTableRecipeType1;
+    } else {
+        
+    }
+}
+
+- (void)fixAutolayoutFor35 {}
+- (void)fixAutolayoutFor40 {}
+- (void)fixAutolayoutFor47 {
+    self.bottomTableRecipeType.constant = kConstantBottomTableRecipeType2;
+}
+- (void)fixAutolayoutFor55 {
+    self.bottomTableRecipeType.constant = kConstantBottomTableRecipeType2;
+}
+- (void)fixAutolayoutForIpad {
+    self.bottomTableRecipeType.constant = kConstantBottomTableRecipeType1;
 }
 
 //*****************************************************************************

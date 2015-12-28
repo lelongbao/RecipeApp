@@ -49,6 +49,7 @@
 		D31614F21C2BAC7500CE1317 /* RecipeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeType.m; sourceTree = "<group>"; };
 		D31614F51C2BEB2800CE1317 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		D31614F61C2BEB2800CE1317 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		D399E34C1C31138C008A3F65 /* FixAutoLayoutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixAutoLayoutDelegate.h; sourceTree = "<group>"; };
 		D3D5F1031C2A5CDB00B8CBA4 /* RecipeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D5F1071C2A5CDB00B8CBA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D3D5F1091C2A5CDB00B8CBA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -126,6 +127,14 @@
 			children = (
 			);
 			name = Custom;
+			sourceTree = "<group>";
+		};
+		D399E3481C311343008A3F65 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				D399E34C1C31138C008A3F65 /* FixAutoLayoutDelegate.h */,
+			);
+			name = Delegate;
 			sourceTree = "<group>";
 		};
 		D3D5F0FA1C2A5CDA00B8CBA4 = {
@@ -243,6 +252,7 @@
 		D3D5F1441C2A756E00B8CBA4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D399E3481C311343008A3F65 /* Delegate */,
 				D3D5F1491C2A75CE00B8CBA4 /* Database */,
 				D3D5F14A1C2A75DB00B8CBA4 /* Constant */,
 			);

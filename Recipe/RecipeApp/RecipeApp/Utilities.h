@@ -27,4 +27,15 @@
  */
 + (BOOL)isSearchController:(UISearchController *)searchController;
 
+/*
+ * Detect ipad
+ */
++ (BOOL) isiPad;
+
+/**
+ * fix auto layout for iPhone 5/5S, iPhone 6/6S, iPhone 6/6S Plus
+ * Check score is 00
+ */
++ (void) fixAutolayoutWithDelegate:(nonnull id /*<UIFixAutolayoutDelegate>*/)delegate;
+
 @end

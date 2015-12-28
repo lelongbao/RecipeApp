@@ -47,8 +47,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="leadingTableRecipe" destination="WO0-F9-MOp" id="IAl-K1-gGC"/>
                         <outlet property="searchDisplayController" destination="uOP-gA-jsA" id="Ffy-VY-rZt"/>
                         <outlet property="tbvRecipe" destination="6pK-HM-l80" id="sp9-PZ-Xi8"/>
+                        <outlet property="trailingTableRecipe" destination="Itw-4A-q76" id="Oeu-M9-cKx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -206,6 +208,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="bottomTableRecipeType" destination="iYm-rv-23i" id="dWw-E6-hyB"/>
                         <outlet property="tbvRecipeType" destination="wqc-bk-iA4" id="Nrl-qU-pDN"/>
                         <outlet property="tvRecipeDecription" destination="dB5-I7-aJh" id="QqY-hr-QnY"/>
                         <outlet property="txtRecipeName" destination="3bl-zt-Nn7" id="4kv-tC-Nik"/>

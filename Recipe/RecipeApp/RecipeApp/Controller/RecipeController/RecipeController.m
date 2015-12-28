@@ -15,6 +15,10 @@
 @property (strong, nonatomic) UISearchController *searchController;
 @property (nonatomic, strong) NSArray *listResult;
 @property (weak, nonatomic) IBOutlet UITableView *tbvRecipe;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *trailingTableRecipe;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingTableRecipe;
+
+
 
 - (IBAction)btnAdd:(id)sender;
 
@@ -29,6 +33,8 @@
     [self initData];
     
     [self configController];
+    
+    [Utilities fixAutolayoutWithDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -79,7 +85,21 @@
     self.searchController.searchBar.backgroundColor = [UIColor clearColor];
     self.definesPresentationContext = YES;
 }
+//*****************************************************************************
+#pragma mark -
+#pragma mark - ** Config screen with multiple device **
 
+- (void)fixAutolayoutFor35 {}
+- (void)fixAutolayoutFor40 {}
+- (void)fixAutolayoutFor47 {}
+- (void)fixAutolayoutFor55 {
+    self.trailingTableRecipe.constant = -20;
+    self.leadingTableRecipe.constant = -20;
+}
+- (void)fixAutolayoutForIpad {
+    self.trailingTableRecipe.constant = -20;
+    self.leadingTableRecipe.constant = -20;
+}
 //*****************************************************************************
 #pragma mark -
 #pragma mark - ** Table view delegate **
