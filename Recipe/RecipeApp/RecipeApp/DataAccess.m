@@ -102,4 +102,24 @@
    return [[[Recipe query] whereWithFormat:@"(type == %@ )",recipeType] fetch];
 }
 
+/*
+ * filter list recipe
+ */
+- (NSArray *)filterRecipeByType:(RecipeType *)recipeType andName:(NSString *)searchText {
+    NSMutableArray *finalList = [[NSMutableArray alloc] init];
+    NSArray *list = [[[Recipe query] whereWithFormat:@"(type == %@ )",recipeType] fetch];
+    for (Recipe *recipe in list) {
+        if ([recipe.recipeName isEqualToString:searchText]) {
+            [finalList removeAllObjects];
+            [finalList addObject:recipe];
+            break;
+        }
+        else {
+            [finalList addObject:recipe];
+        }
+    }
+    
+    return finalList;
+}
+
 @end

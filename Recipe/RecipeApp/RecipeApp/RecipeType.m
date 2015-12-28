@@ -12,4 +12,13 @@
 
 @dynamic recipeType;
 
+/*
+ * List recipe type
+ */
++ (NSArray *)listRecipeType {
+    return [[RecipeType query] fetch];
+}
+
+
+
 @end

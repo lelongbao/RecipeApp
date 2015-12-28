@@ -12,4 +12,9 @@
 
 @property (strong, nonatomic) NSString *recipeType;
 
+/*
+ * List recipe type
+ */
++ (NSArray *)listRecipeType;
+
 @end

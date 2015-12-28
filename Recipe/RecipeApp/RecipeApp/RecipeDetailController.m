@@ -126,8 +126,10 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if ([textField isEqual:self.txtRecipeType]) {
-        [self showListRecipeType];
         [textField resignFirstResponder];
+        [self showListRecipeType];
+    } else {
+        
     }
 }
 

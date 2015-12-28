@@ -21,4 +21,11 @@
     
 }
 
+/*
+ * List recipe
+ */
++ (NSArray *)listRecipe {
+    return [[Recipe query] fetch];
+}
+
 @end

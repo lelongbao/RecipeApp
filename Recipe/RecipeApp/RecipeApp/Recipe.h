@@ -15,4 +15,9 @@
 @property (strong, nonatomic) NSString *recipeDecription;
 @property (strong, nonatomic) RecipeType *type;
 
+/*
+ * List recipe
+ */
++ (NSArray *)listRecipe;
+
 @end

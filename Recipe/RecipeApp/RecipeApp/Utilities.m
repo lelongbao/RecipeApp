@@ -18,4 +18,47 @@
                     completion:NULL];
 }
 
+/*
+ * Filter array duplicate
+ */
++ (NSArray*) filterArrayDuplicate:(NSArray *)list
+{
+    
+    NSMutableArray *tmp = [NSMutableArray array];
+    NSMutableSet *names = [NSMutableSet set];
+    for (id item in list) {
+        NSString *destinationName = [item recipeType];
+        if (![names containsObject:destinationName]) {
+            [tmp addObject:item];
+            [names addObject:destinationName];
+        }
+    }
+    return [NSArray arrayWithArray:tmp];
+}
+
+/*
+ * Filter search
+ */
++ (NSArray *)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope withArray:(NSArray *)listArray
+{
+    NSMutableArray *listRecipeObj = [[NSMutableArray alloc] init];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"recipeName contains %@", searchText];
+    NSArray *listRecipeFilter = [listArray filteredArrayUsingPredicate:resultPredicate];
+    for (Recipe *recipe in listRecipeFilter) {
+        [listRecipeObj addObject:recipe.type];
+    }
+    return  [Utilities filterArrayDuplicate:listRecipeObj];
+}
+
+/*
+ * Detect is search or not
+ */
++ (BOOL)isSearchController:(UISearchController *)searchController {
+    if (![searchController.searchBar.text isEqualToString:kEmptyString]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 @end

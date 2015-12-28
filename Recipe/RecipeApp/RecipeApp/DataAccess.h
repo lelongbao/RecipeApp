@@ -49,4 +49,9 @@
  */
 - (NSArray *)listRecipeByType:(RecipeType *)recipeType;
 
+/*
+ * filter list recipe
+ */
+- (NSArray *)filterRecipeByType:(RecipeType *)recipeType andName:(NSString *)searchText;
+
 @end
