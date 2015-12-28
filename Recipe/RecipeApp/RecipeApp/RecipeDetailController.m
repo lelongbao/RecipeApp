@@ -157,6 +157,7 @@
         [self.view endEditing:YES];
         return NO;
     } else {
+        [self hideListRecipe];
         return YES;
     }
 }
