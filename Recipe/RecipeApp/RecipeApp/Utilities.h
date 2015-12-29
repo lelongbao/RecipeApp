@@ -10,22 +10,22 @@
 
 @interface Utilities : NSObject
 
-+ (void)addAnimation:(UIView *)view;
++ (void)addAnimation:(nonnull UIView *)view;
 
 /*
  * Filter array duplicate
  */
-+ (NSArray*) filterArrayDuplicate:(NSArray *)list;
++ (nonnull NSArray*) filterArrayDuplicate:(nonnull NSArray *)list;
 
 /*
  * Filter search
  */
-+ (NSArray *)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope withArray:(NSArray *)listArray;
++ (nonnull NSArray *)filterContentForSearchText:(nonnull NSString*)searchText scope:(nonnull NSString*)scope withArray:(nonnull NSArray *)listArray;
 
 /*
  * Detect is search or not
  */
-+ (BOOL)isSearchController:(UISearchController *)searchController;
++ (BOOL)isSearchController:(nonnull UISearchController *)searchController;
 
 /*
  * Detect ipad

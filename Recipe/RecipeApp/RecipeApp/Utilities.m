@@ -16,7 +16,7 @@
 
 @implementation Utilities
 
-+ (void)addAnimation:(UIView *)view {
++ (void)addAnimation:(nonnull UIView *)view {
     [UIView transitionWithView:view
                       duration:0.3
                        options:UIViewAnimationOptionTransitionCrossDissolve
@@ -27,7 +27,7 @@
 /*
  * Filter array duplicate
  */
-+ (NSArray*) filterArrayDuplicate:(NSArray *)list
++ (nonnull NSArray*) filterArrayDuplicate:(nonnull NSArray *)list
 {
     
     NSMutableArray *tmp = [NSMutableArray array];
@@ -45,7 +45,7 @@
 /*
  * Filter search
  */
-+ (NSArray *)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope withArray:(NSArray *)listArray
++ (nonnull NSArray *)filterContentForSearchText:(NSString*)searchText scope:(nonnull NSString*)scope withArray:(nonnull NSArray *)listArray
 {
     NSMutableArray *listRecipeObj = [[NSMutableArray alloc] init];
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"recipeName contains %@", searchText];
@@ -59,7 +59,7 @@
 /*
  * Detect is search or not
  */
-+ (BOOL)isSearchController:(UISearchController *)searchController {
++ (BOOL)isSearchController:(nonnull UISearchController *)searchController {
     if (![searchController.searchBar.text isEqualToString:kEmptyString]) {
         return YES;
     } else {
